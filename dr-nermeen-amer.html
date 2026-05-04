@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dr. Nermeen Amer — Ophthalmology Specialist</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --teal: #1a5f6a;
+    --teal-light: #2a7f8e;
+    --teal-pale: #e8f4f6;
+    --gold: #b8935a;
+    --gold-light: #d4b07a;
+    --ink: #1c2022;
+    --ink-soft: #4a5568;
+    --ink-muted: #718096;
+    --cream: #faf8f5;
+    --white: #ffffff;
+    --rule: rgba(26,95,106,0.12);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    font-size: 15px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--teal);
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -120px; right: -120px;
+    width: 520px; height: 520px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.07);
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: 30%;
+    width: 340px; height: 340px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 60px 80px 80px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-eyebrow {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    margin-bottom: 28px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.2s forwards;
+  }
+
+  .hero-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(52px, 5.5vw, 78px);
+    font-weight: 300;
+    color: var(--white);
+    line-height: 1.05;
+    margin-bottom: 8px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.4s forwards;
+  }
+
+  .hero-name em {
+    font-style: italic;
+    color: rgba(255,255,255,0.6);
+  }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(18px, 2vw, 24px);
+    font-weight: 300;
+    color: var(--gold-light);
+    letter-spacing: 0.5px;
+    margin-bottom: 40px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.55s forwards;
+  }
+
+  .hero-bio {
+    font-size: 15px;
+    color: rgba(255,255,255,0.72);
+    line-height: 1.8;
+    max-width: 440px;
+    margin-bottom: 48px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.7s forwards;
+  }
+
+  .hero-contact {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.85s forwards;
+  }
+
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: rgba(255,255,255,0.65);
+    font-size: 14px;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .contact-item:hover { color: var(--gold-light); }
+
+  .contact-icon {
+    width: 36px; height: 36px;
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    font-size: 14px;
+  }
+
+  .hero-right {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .hero-image-frame {
+    position: absolute;
+    bottom: 0;
+    width: 85%;
+    max-width: 420px;
+    opacity: 0;
+    animation: fadeIn 1.2s ease 0.6s forwards;
+  }
+
+  .hero-image-frame img {
+    width: 100%;
+    display: block;
+    filter: brightness(0.92) contrast(1.05);
+  }
+
+  .hero-stat-bar {
+    position: absolute;
+    bottom: 40px;
+    left: -30px;
+    display: flex;
+    gap: 0;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 1s forwards;
+  }
+
+  .stat {
+    background: rgba(255,255,255,0.06);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 18px 28px;
+    text-align: center;
+  }
+  .stat:first-child { border-radius: 12px 0 0 12px; }
+  .stat:last-child { border-radius: 0 12px 12px 0; }
+
+  .stat-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    font-weight: 600;
+    color: var(--white);
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    margin-top: 4px;
+  }
+
+  /* ── NAV ── */
+  .sticky-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--white);
+    border-bottom: 1px solid var(--rule);
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+  }
+
+  .nav-item {
+    padding: 18px 28px;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+  .nav-item:hover {
+    color: var(--teal);
+    border-bottom-color: var(--teal);
+  }
+
+  /* ── SECTIONS ── */
+  .section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 100px 40px;
+  }
+
+  .section-label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 4vw, 52px);
+    font-weight: 300;
+    color: var(--ink);
+    line-height: 1.1;
+    margin-bottom: 60px;
+  }
+
+  .section-title em {
+    font-style: italic;
+    color: var(--teal-light);
+  }
+
+  /* ── SPECIALTIES ── */
+  .specialties-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-bottom: 0;
+  }
+
+  .specialty-card {
+    background: var(--white);
+    border: 1px solid var(--rule);
+    border-radius: 16px;
+    padding: 36px 28px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s;
+    cursor: default;
+  }
+  .specialty-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 50px rgba(26,95,106,0.1);
+    border-color: var(--teal-light);
+  }
+
+  .specialty-icon {
+    width: 52px; height: 52px;
+    background: var(--teal-pale);
+    border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  .specialty-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 10px;
+  }
+
+  .specialty-desc {
+    font-size: 13.5px;
+    color: var(--ink-muted);
+    line-height: 1.7;
+  }
+
+  /* ── EXPERIENCE ── */
+  #experience { background: var(--white); }
+  #experience .section { max-width: 1100px; }
+
+  .timeline {
+    position: relative;
+    padding-left: 28px;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 8px; bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--teal), transparent);
+  }
+
+  .timeline-item {
+    position: relative;
+    margin-bottom: 48px;
+    padding-left: 40px;
+  }
+
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -34px; top: 8px;
+    width: 9px; height: 9px;
+    border-radius: 50%;
+    background: var(--white);
+    border: 2px solid var(--teal);
+    box-shadow: 0 0 0 4px var(--teal-pale);
+  }
+
+  .timeline-item.current::before {
+    background: var(--teal);
+  }
+
+  .timeline-period {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 6px;
+  }
+
+  .timeline-role {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+
+  .timeline-org {
+    font-size: 14px;
+    color: var(--teal-light);
+    font-weight: 500;
+    margin-bottom: 14px;
+  }
+
+  .timeline-points {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .timeline-points li {
+    font-size: 14px;
+    color: var(--ink-soft);
+    padding-left: 16px;
+    position: relative;
+  }
+  .timeline-points li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--teal-light);
+    font-size: 12px;
+  }
+
+  /* ── EDUCATION ── */
+  .edu-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .edu-card {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 32px;
+    border-left: 3px solid var(--teal);
+    transition: box-shadow 0.3s;
+  }
+  .edu-card:hover { box-shadow: 0 10px 40px rgba(26,95,106,0.08); }
+
+  .edu-degree {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+
+  .edu-institution {
+    font-size: 13px;
+    color: var(--teal-light);
+    font-weight: 500;
+    margin-bottom: 4px;
+  }
+
+  .edu-year {
+    font-size: 12px;
+    color: var(--ink-muted);
+  }
+
+  /* ── PUBLICATIONS ── */
+  #publications { background: var(--teal); }
+  #publications .section-title { color: var(--white); }
+  #publications .section-label { color: var(--gold-light); }
+
+  .pub-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .pub-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 14px;
+    padding: 28px;
+    transition: background 0.3s, transform 0.3s;
+  }
+  .pub-card:hover {
+    background: rgba(255,255,255,0.1);
+    transform: translateY(-4px);
+  }
+
+  .pub-year {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    margin-bottom: 10px;
+  }
+
+  .pub-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--white);
+    line-height: 1.4;
+    margin-bottom: 10px;
+  }
+
+  .pub-venue {
+    font-size: 12.5px;
+    color: rgba(255,255,255,0.5);
+    font-style: italic;
+  }
+
+  /* ── LANGUAGES & SKILLS ── */
+  .ls-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+  }
+
+  .ls-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 24px;
+  }
+
+  .lang-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+
+  .lang-name {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--ink);
+    width: 80px;
+  }
+
+  .lang-bar-track {
+    flex: 1;
+    height: 4px;
+    background: var(--rule);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .lang-bar-fill {
+    height: 100%;
+    background: linear-gradient(to right, var(--teal), var(--teal-light));
+    border-radius: 2px;
+    transition: width 1s ease;
+  }
+
+  .skills-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .skill-tag {
+    background: var(--teal-pale);
+    color: var(--teal);
+    border: 1px solid rgba(26,95,106,0.15);
+    border-radius: 100px;
+    padding: 8px 18px;
+    font-size: 13px;
+    font-weight: 500;
+    transition: background 0.2s, color 0.2s;
+  }
+  .skill-tag:hover {
+    background: var(--teal);
+    color: var(--white);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink);
+    text-align: center;
+    padding: 40px;
+    color: rgba(255,255,255,0.4);
+    font-size: 13px;
+  }
+
+  footer span { color: var(--gold-light); }
+
+  /* ── DIVIDER ── */
+  .divider {
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(to right, var(--gold), transparent);
+    margin-bottom: 40px;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-right { display: none; }
+    .hero-left { padding: 60px 32px; }
+    .specialties-grid { grid-template-columns: 1fr 1fr; }
+    .edu-grid { grid-template-columns: 1fr; }
+    .pub-grid { grid-template-columns: 1fr; }
+    .ls-grid { grid-template-columns: 1fr; }
+    .section { padding: 60px 24px; }
+  }
+
+  @media (max-width: 600px) {
+    .specialties-grid { grid-template-columns: 1fr; }
+    .sticky-nav { gap: 0; overflow-x: auto; }
+    .nav-item { padding: 16px 16px; font-size: 10px; white-space: nowrap; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══ HERO ══ -->
+<section class="hero" id="top">
+  <div class="hero-left">
+    <p class="hero-eyebrow">Ophthalmology Specialist · Dubai, UAE</p>
+    <h1 class="hero-name">Dr. Nermeen<br><em>Amer</em></h1>
+    <p class="hero-title">MD, PhD · Retina & Neuro-Ophthalmology · Aeromedical Specialist</p>
+    <p class="hero-bio">
+      A specialist ophthalmologist with over two decades of experience in medical retina and neuro-ophthalmology, combining academic excellence with hands-on clinical expertise across Egypt, Kuwait, and the UAE.
+    </p>
+    <div class="hero-contact">
+      <a class="contact-item" href="tel:+971563512464">
+        <span class="contact-icon">📞</span>
+        +971 56 351 2464
+      </a>
+      <a class="contact-item" href="mailto:nermeen.amer1000@gmail.com">
+        <span class="contact-icon">✉</span>
+        nermeen.amer1000@gmail.com
+      </a>
+      <span class="contact-item">
+        <span class="contact-icon">📍</span>
+        Emirates Living, Dubai, UAE
+      </span>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-stat-bar">
+      <div class="stat">
+        <div class="stat-number">28+</div>
+        <div class="stat-label">Years Exp.</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">6</div>
+        <div class="stat-label">Publications</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">MD</div>
+        <div class="stat-label">PhD · Cairo</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ STICKY NAV ══ -->
+<nav class="sticky-nav">
+  <a class="nav-item" href="#specialties">Specialties</a>
+  <a class="nav-item" href="#experience">Experience</a>
+  <a class="nav-item" href="#education">Education</a>
+  <a class="nav-item" href="#publications">Publications</a>
+  <a class="nav-item" href="#languages">Profile</a>
+</nav>
+
+<!-- ══ SPECIALTIES ══ -->
+<section id="specialties">
+  <div class="section">
+    <p class="section-label reveal">Areas of Expertise</p>
+    <h2 class="section-title reveal">Clinical <em>Specialties</em></h2>
+    <div class="specialties-grid">
+      <div class="specialty-card reveal">
+        <div class="specialty-icon">👁</div>
+        <div class="specialty-name">Medical Retina</div>
+        <p class="specialty-desc">Expert management of diabetic retinopathy, retinal vein occlusion, age-related macular disease, and intravitreal injections.</p>
+      </div>
+      <div class="specialty-card reveal">
+        <div class="specialty-icon">🧠</div>
+        <div class="specialty-name">Neuro-Ophthalmology</div>
+        <p class="specialty-desc">Diagnosis and management of optic nerve disease, papillary abnormalities, double vision, and neurological eye disorders.</p>
+      </div>
+      <div class="specialty-card reveal">
+        <div class="specialty-icon">✈️</div>
+        <div class="specialty-name">Aeromedical Ophthalmology</div>
+        <p class="specialty-desc">GCAA-designated aeromedical ophthalmology specialist, providing aviation medical assessments for pilots and crew.</p>
+      </div>
+      <div class="specialty-card reveal">
+        <div class="specialty-icon">🔬</div>
+        <div class="specialty-name">Diagnostic Imaging</div>
+        <p class="specialty-desc">Advanced expertise in OCT, fundus fluorescence angiography, perimetry, corneal topography, and ultrasonography.</p>
+      </div>
+      <div class="specialty-card reveal">
+        <div class="specialty-icon">⚕️</div>
+        <div class="specialty-name">Anterior Segment Surgery</div>
+        <p class="specialty-desc">Cataract surgery (phacoemulsification), LASIK, PRK, and YAG/argon laser photocoagulation procedures.</p>
+      </div>
+      <div class="specialty-card reveal">
+        <div class="specialty-icon">🎓</div>
+        <div class="specialty-name">Academic & Research</div>
+        <p class="specialty-desc">Lecturer at Cairo University; contributor to peer-reviewed publications and international ophthalmology conferences.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ EXPERIENCE ══ -->
+<section id="experience">
+  <div class="section">
+    <p class="section-label reveal">Career History</p>
+    <h2 class="section-title reveal">Professional <em>Experience</em></h2>
+    <div class="timeline">
+
+      <div class="timeline-item current reveal">
+        <p class="timeline-period">Sep 2025 — Present</p>
+        <p class="timeline-role">Ophthalmology Specialist — Aeromedical Specialist</p>
+        <p class="timeline-org">Mediclinic Parkview Hospital · Dubai, UAE</p>
+        <ul class="timeline-points">
+          <li>General ophthalmology using comprehensive ophthalmic diagnostic tests and recent therapeutic procedures</li>
+          <li>GCAA-designated aeromedical ophthalmology specialist</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item reveal">
+        <p class="timeline-period">Sep 2025 (Part-Time)</p>
+        <p class="timeline-role">Ophthalmology Specialist — Aeromedical Specialist</p>
+        <p class="timeline-org">GMC Clinics · Dubai, UAE</p>
+        <ul class="timeline-points">
+          <li>General ophthalmology with special focus on medical retina</li>
+          <li>Innovative diagnostic tests for precise patient assessments</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item reveal">
+        <p class="timeline-period">Sep 2022 — Nov 2024 (Part-Time)</p>
+        <p class="timeline-role">Ophthalmology Specialist</p>
+        <p class="timeline-org">Healthhub Clinics by Al Futtaim · Dubai, UAE</p>
+        <ul class="timeline-points">
+          <li>Comprehensive eye exams for various ocular conditions</li>
+          <li>Advanced diagnostic techniques improving accuracy of diagnoses</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item reveal">
+        <p class="timeline-period">Jan 2015 — Jan 2018</p>
+        <p class="timeline-role">Ophthalmology Specialist</p>
+        <p class="timeline-org">Al Zahra Hospital & Medical Center · Dubai, UAE</p>
+        <ul class="timeline-points">
+          <li>Focused on neurological disorders and medical retinal conditions</li>
+          <li>Specialties: optic nerve disease, diabetic retinopathy, retinal vein occlusion, AMD, papillary abnormalities, double vision</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item reveal">
+        <p class="timeline-period">Mar 2012 — May 2013</p>
+        <p class="timeline-role">Ophthalmology Specialist</p>
+        <p class="timeline-org">Hadi Clinic (Hospital) — JCI-Like Accredited · Kuwait</p>
+        <ul class="timeline-points">
+          <li>Laser photocoagulation, intravitreal injections, and botox injection procedures</li>
+          <li>LASIK and PRK refractive surgery</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item reveal">
+        <p class="timeline-period">Jan 2003 — Jan 2012</p>
+        <p class="timeline-role">Ophthalmology Consultant</p>
+        <p class="timeline-org">Dar El-Eyoun Hospital · Cairo, Egypt</p>
+        <ul class="timeline-points">
+          <li>Anterior segment surgeries including cataract procedures</li>
+          <li>Pre- and post-operative assessment of in-patients</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item reveal">
+        <p class="timeline-period">Jan 2008 — Jan 2012</p>
+        <p class="timeline-role">Ophthalmology Consultant</p>
+        <p class="timeline-org">Al-Salam International Hospital (JCI Accredited) · Cairo, Egypt</p>
+      </div>
+
+      <div class="timeline-item reveal">
+        <p class="timeline-period">Jan 2004 — Jan 2012</p>
+        <p class="timeline-role">Ophthalmology Specialist / Consultant</p>
+        <p class="timeline-org">El-Nour Eye Hospital · Cairo, Egypt</p>
+      </div>
+
+      <div class="timeline-item reveal">
+        <p class="timeline-period">Jan 1999 — Jan 2002 (Part-Time)</p>
+        <p class="timeline-role">Ophthalmology Fellow</p>
+        <p class="timeline-org">International Eye Hospital · Cairo, Egypt</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ EDUCATION ══ -->
+<section id="education">
+  <div class="section">
+    <p class="section-label reveal">Academic Qualifications</p>
+    <h2 class="section-title reveal">Education & <em>Training</em></h2>
+    <div class="edu-grid">
+      <div class="edu-card reveal">
+        <p class="edu-degree">Doctorate in Ophthalmology (MD, PhD)</p>
+        <p class="edu-institution">Cairo University · Faculty of Medicine</p>
+        <p class="edu-year">2009</p>
+      </div>
+      <div class="edu-card reveal">
+        <p class="edu-degree">Master's in Ophthalmology (MSc.)</p>
+        <p class="edu-institution">Cairo University · Faculty of Medicine</p>
+        <p class="edu-year">2001</p>
+      </div>
+      <div class="edu-card reveal">
+        <p class="edu-degree">Bachelor of Medicine & Surgery (MBBch.)</p>
+        <p class="edu-institution">Faculty of Medicine, Cairo University</p>
+        <p class="edu-year">1996</p>
+      </div>
+      <div class="edu-card reveal">
+        <p class="edu-degree">Aeromedical Specialist Course</p>
+        <p class="edu-institution">FlyingMedicine.UK</p>
+        <p class="edu-year">2020</p>
+      </div>
+      <div class="edu-card reveal">
+        <p class="edu-degree">General Certificate of Education (GCE)</p>
+        <p class="edu-institution">University of London</p>
+        <p class="edu-year">1990</p>
+      </div>
+      <div class="edu-card reveal">
+        <p class="edu-degree">Lecturer in Ophthalmology</p>
+        <p class="edu-institution">Cairo University (Fayoum) · Academic Faculty</p>
+        <p class="edu-year">2003 — Present</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PUBLICATIONS ══ -->
+<section id="publications">
+  <div class="section">
+    <p class="section-label reveal">Academic Contributions</p>
+    <h2 class="section-title reveal">Research & <em>Publications</em></h2>
+    <div class="pub-grid">
+      <div class="pub-card reveal">
+        <p class="pub-year">2011</p>
+        <p class="pub-title">Segmentation of Diabetic Macular Edema in Fluorescein Angiograms</p>
+        <p class="pub-venue">8th IEEE International Symposium on Biomedical Imaging (ISBI 2011) — Chicago, USA</p>
+      </div>
+      <div class="pub-card reveal">
+        <p class="pub-year">2009</p>
+        <p class="pub-title">Intravitreal Triamcinolone Acetonide during Phacoemulsification for Prophylaxis and Management of Macular Edema in Diabetics</p>
+        <p class="pub-venue">Cairo University Press</p>
+      </div>
+      <div class="pub-card reveal">
+        <p class="pub-year">2004</p>
+        <p class="pub-title">Intravitreal Triamcinolone Acetonide during Phacoemulsification for Patients with Diabetic Macular and Dense Cataract</p>
+        <p class="pub-venue">European Vitreo-Retinal Society — Istanbul, Turkey</p>
+      </div>
+      <div class="pub-card reveal">
+        <p class="pub-year">2004</p>
+        <p class="pub-title">Epidemiology of Diabetic Retinopathy in Egypt: A Hospital-Based Study</p>
+        <p class="pub-venue">European Vitreo-Retinal Society — Istanbul, Turkey</p>
+      </div>
+      <div class="pub-card reveal">
+        <p class="pub-year">2004</p>
+        <p class="pub-title">Intravitreal Triamcinolone Injection in the Treatment of Diabetic Macular Edema</p>
+        <p class="pub-venue">Egyptian Ophthalmology Society Annual Meeting — Cairo</p>
+      </div>
+      <div class="pub-card reveal">
+        <p class="pub-year">2000</p>
+        <p class="pub-title">Axial Length Measurement in Silicone-Filled Eyes</p>
+        <p class="pub-venue">Cairo University Press</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ LANGUAGES & SKILLS ══ -->
+<section id="languages">
+  <div class="section">
+    <p class="section-label reveal">Profile</p>
+    <h2 class="section-title reveal">Languages & <em>Skills</em></h2>
+    <div class="ls-grid">
+      <div class="reveal">
+        <p class="ls-title">Languages</p>
+        <div class="lang-item">
+          <span class="lang-name">Arabic</span>
+          <div class="lang-bar-track"><div class="lang-bar-fill" style="width:100%"></div></div>
+          <span style="font-size:12px;color:var(--ink-muted);width:50px">Native</span>
+        </div>
+        <div class="lang-item">
+          <span class="lang-name">English</span>
+          <div class="lang-bar-track"><div class="lang-bar-fill" style="width:90%"></div></div>
+          <span style="font-size:12px;color:var(--ink-muted);width:50px">Fluent</span>
+        </div>
+      </div>
+      <div class="reveal">
+        <p class="ls-title">Core Competencies</p>
+        <div class="skills-tags">
+          <span class="skill-tag">OCT Imaging</span>
+          <span class="skill-tag">Fundus Fluorescence Angiography</span>
+          <span class="skill-tag">Intravitreal Injections</span>
+          <span class="skill-tag">Laser Photocoagulation</span>
+          <span class="skill-tag">Phacoemulsification</span>
+          <span class="skill-tag">LASIK / PRK</span>
+          <span class="skill-tag">Corneal Topography</span>
+          <span class="skill-tag">Perimetry</span>
+          <span class="skill-tag">Ultrasonography</span>
+          <span class="skill-tag">Aeromedical Assessments</span>
+          <span class="skill-tag">Patient Communication</span>
+          <span class="skill-tag">Academic Teaching</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <p>Dr. Nermeen Amer · Ophthalmology Specialist · Dubai, UAE</p>
+  <p style="margin-top:8px;">✉ <span>nermeen.amer1000@gmail.com</span> &nbsp;·&nbsp; 📞 <span>+971 56 351 2464</span></p>
+</footer>
+
+<script>
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Smooth scroll for nav
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+</script>
+</body>
+</html>
